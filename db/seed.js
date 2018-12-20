@@ -1,10 +1,5 @@
-import mockData from '../../Airbnb/mockdata';
-import db from '../db/index';
-// arr of static urls
-// loop over mockData and replace image URL's with new URL's
-// loop over mockData ???
-// change listing ID # ???
-
+var db = require('../db/index.js')
+var faker = require('faker');
 
 // These are 20 static images files to use for each of the 100 Airbnb listings
 const sampleStaticData = ['file:///Users/helenjsoh/Desktop/HS-images/CarouselPics/1.jpeg',
@@ -29,43 +24,78 @@ const sampleStaticData = ['file:///Users/helenjsoh/Desktop/HS-images/CarouselPic
 'file:///Users/helenjsoh/Desktop/HS-images/CarouselPics/19.jpeg',
 'file:///Users/helenjsoh/Desktop/HS-images/CarouselPics/20.jpeg']
 
-// This function will create 100 listings with 8-10 image URLS
-const createListings = () => {
-    // This will create 100 listings
+const listingData = [];
+const imageData = [];
+
+// This fn will create 100 listing objs with an arr of 8-10 image objs
+const createMockData = () => {
+    // This loop will create 100 listing objs
     for (var i = 0; i < 100; i++) {
-        let imagesArr = [];
-        // Generates num btwn 8 - 10
+        let id = i;
+
+        // This loop will generate 8-10 images objs for ea listing
         let randomNum = Math.floor(Math.random() * 3) + 8;
+
         let listing = {
-            id: i,
-            images: {
-                // for (var i = 0; i < randomNum; i++) {
-                //     url: [], 
-                //     caption: // 
-                // };
-            }
+            id: id,
+            count: randomNum
         }
+        listingData.push(listing);
+
+        for (var j = 0; j < randomNum; j++) {
+            let url = sampleStaticData[Math.floor(Math.random() * Math.floor(20))];
+            let caption = faker.lorem.sentence();
+            let imageObj = {
+                // Listing_id points to the listing it belongs to
+                listing_id: id,
+                image_url: url,
+                image_caption: caption,
+            }
+            imageData.push(imageObj);
+        };
     }
 };
+
+createMockData();
+// console.log('Example of listingData', listingData[99]);
+// console.log('Example of imageData', imageData[99]);
 
 
 // Run this function once to load the mockData into mongoDB.
-const loadDB = (mockData) => {
-    for (var i = 0; i < mockData.length; i++) {
-        let data = new db.Image({
-            id: mockData.id,
-            listingID: mockData.listingID,
-            listingUrl: mockData.listingUrl,
-            imageUrl: mockData.imageUrl,
-            caption: mockData.caption
+const loadListingCollection = () => {
+    for (var i = 0; i < listingData.length; i++) {
+        // console.log(listingData[i].id)
+        let data = new db.Listing({
+            id: listingData[i].id,
+            count: listingData[i].count
         })
-
         data.save((err, data) => {
             if (err) {
-                console.log('Could not save data', err);
+                console.log('Could not save listing data', err);
             } else {
-                console.log('Data has been saved.')
+                console.log('Listing data has been saved.')
             }
         })
     }
 };
+
+const loadImageCollection = () => {
+    for (var i = 0; i < imageData.length; i++) {
+        // console.log(imageData[0].id)
+        let data = new db.Image({
+            id: imageData[i].listing_id,
+            image_url: imageData[i].image_url,
+            image_caption: imageData[i].image_caption
+        })
+        data.save((err, data) => {
+            if (err) {
+                console.log('Could not save image data', err);
+            } else {
+                console.log('Image data has been saved.')
+            }
+        })
+    }
+};
+
+loadListingCollection();
+loadImageCollection();
