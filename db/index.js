@@ -9,17 +9,20 @@ db.once('open', function () {
 
 var imageSchema = new mongoose.Schema({
     id: Number,
-    listingID: Number,
-    listingUrl: String,
-    imageUrl: String,
-    caption: String
+    images: [Object]
+    // imageUrl: String,
+    // caption: String
 });
 
 var Image = mongoose.model('Image', imageSchema);
 
 module.exports = {Image}
 
-// Comment data generator fn out after using!
-// const generateData = () => {
-// 
-// };
+// var imageSchema = new mongoose.Schema({
+//     id: Number,
+//     images: [Object],
+//     listingID: Number,
+//     listingUrl: String,
+//     imageUrl: String,
+//     caption: String
+// });
