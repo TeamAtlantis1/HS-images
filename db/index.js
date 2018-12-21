@@ -21,11 +21,4 @@ var imageSchema = new mongoose.Schema({
 var Listing = mongoose.model("Listing", listingSchema);
 var Image = mongoose.model("Image", imageSchema);
 
-// var imageSchema = new mongoose.Schema({
-//     id: Number,
-//     image_list: [String],
-//     // imageUrl: String,
-//     // caption: String
-// });
-
 module.exports = {Listing, Image};
