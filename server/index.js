@@ -30,13 +30,14 @@ app.get('/images', function (req, res) {
 app.get('/imagesByID/:listingID', function (req, res) {
     let listingID = req.params.listingID;
     console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
+
     dbfunctions.findImagebyID(listingID)
     .then((docs) => {
         console.log('What is docs after get req by ID >>>>>>', docs);
         res.send(docs);
     })
     .catch((err) => {
-        console.log('Error getting images by listing ID');
+        console.log(`Error getting images by listing ${listingID}:`, err);
         res.sendStatus(500);
     })
 });

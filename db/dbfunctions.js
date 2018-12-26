@@ -9,7 +9,7 @@ let findAllImages = (callback) => {
 };
 
 
-let findImagebyID = (listingID, callback) => {
+let findImagebyID = (listingID) => {
     return db.Image.find({
         id: listingID
     }).exec();

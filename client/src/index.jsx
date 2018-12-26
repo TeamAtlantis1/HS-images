@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Grid from 'react-css-grid'
 import axios from 'axios';
 
 class App extends React.Component {
@@ -16,12 +17,8 @@ class App extends React.Component {
 
     render () {
         return (
-            <div>
-                <Images/>
-                <LeftArrow/>
-                <RightArrow/>
-            </div>
-        )
+            <div>Hi</div>
+        );
     }
 };
 
