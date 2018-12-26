@@ -8,4 +8,11 @@ let findAllImages = (callback) => {
     db.Image.find({}, callback)
 };
 
-module.exports = {findAllListings, findAllImages}
+
+let findImagebyID = (id, callback) => {
+    db.Image.findOne({
+        id: id
+    }, callback);
+};
+
+module.exports = {findAllListings, findAllImages, findImagebyID}

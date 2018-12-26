@@ -6,10 +6,11 @@
   "dependencies": {
     "babel-loader": "^8.0.4",
     "faker": "^4.1.0",
-    "mongodb": "^3.1.10",
-    "mongoose": "^5.4.0",
-    "webpack-cli": "^3.1.2",
-    "webpack": "^4.28.0"
+    "jest": "^23.6.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.28.0",
+    "webpack-cli": "^3.1.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

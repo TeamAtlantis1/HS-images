@@ -3,30 +3,42 @@ const axios = require('axios');
 var dbfunctions = require('../db/dbfunctions.js')
 
 // Middleware
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(express.static(__dirname + '/../client/dist'));
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
-let port = 3006;
+let port = 5000;
 app.listen(port, function () {
     console.log(`listening on Port ${port}...`);
 })
 
+// Get request for all images
 app.get('/images', function (req, res) {
-    console.log('is it coming in here?')
+    console.log('Requesting all images');
     dbfunctions.findAllImages((err, docs) => {
         if (err) {
             console.log(err);
-        } else {    
+        } else {
             res.send(docs);
         }
     })
 })
 
-app.get('/images', function(req, res) {
-    
-})
+// Get images by Listing ID #
+app.get('/imagesByID/:listingID', function (req, res) {
+    let listingID = req.params.listingID;
+    console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
+    dbfunctions.findImagebyID(listingID)
+    .then((docs) => {
+        console.log('What is docs after get req by ID >>>>>>', docs);
+        res.send(docs);
+    })
+    .catch((err) => {
+        console.log('Error getting images by listing ID');
+        res.sendStatus(500);
+    })
+});
 
 module.exports = app;
