@@ -9,10 +9,10 @@ let findAllImages = (callback) => {
 };
 
 
-let findImagebyID = (id, callback) => {
-    db.Image.findOne({
-        id: id
-    }, callback);
+let findImagebyID = (listingID, callback) => {
+    return db.Image.find({
+        id: listingID
+    }).exec();
 };
 
-module.exports = {findAllListings, findAllImages, findImagebyID}
+module.exports = {findAllListings, findAllImages, findImagebyID}    

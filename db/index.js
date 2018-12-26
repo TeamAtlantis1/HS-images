@@ -1,5 +1,8 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/images", { useNewUrlParser: true });
+mongoose.connect(
+  "mongodb://localhost/images",
+  { useNewUrlParser: true }
+);
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection error:"));
@@ -21,4 +24,4 @@ var imageSchema = new mongoose.Schema({
 var Listing = mongoose.model("Listing", listingSchema);
 var Image = mongoose.model("Image", imageSchema);
 
-module.exports = {Listing, Image};
+module.exports = { Listing, Image };
