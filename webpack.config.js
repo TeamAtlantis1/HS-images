@@ -1,27 +1,52 @@
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
-  entry: __dirname + "/client/index.jsx",
+const config = {
+  entry: './client/src/index.jsx',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
   module: {
     rules: [
       {
-        test: [/\.jsx$/],
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
+        use: [{
+          loader: 'babel-loader',
           options: {
             presets: ["@babel/preset-react", "@babel/preset-env"]
           }
-        }
+        }]
       }
     ]
-  },
-  output: {
-    filename: "bundle.js",
-    path: __dirname + "/client/dist"
   }
- };
+  
+}
+
+module.exports = config;
+
+// module.exports = {
+//   entry: __dirname + "/client/index.jsx",
+//   module: {
+//     rules: [
+//       {
+//         test: [/\.jsx$/],
+//         exclude: /node_modules/,
+//         use: {
+//           loader: "babel-loader",
+//           options: {
+//             presets: ["@babel/preset-react", "@babel/preset-env"]
+//           }
+//         }
+//       }
+//     ]
+//   },
+//   output: {
+//     filename: "bundle.js",
+//     path: __dirname + "/client/dist"
+//   }
+//  };
 
 // const config = {
 //   entry: __dirname + '/client/src/index.jsx',
@@ -46,4 +71,4 @@ module.exports = {
 //   }
 // }
 
-module.exports = config;
+// module.exports = config;

@@ -4,13 +4,11 @@
   "description": "> This is the Image Carousel module of Team Atlantis' Airbnb web app.",
   "main": "index.js",
   "dependencies": {
-    "babel-loader": "^8.0.4",
     "faker": "^4.1.0",
     "jest": "^23.6.0",
     "react": "^16.7.0",
     "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.7.0",
-    "webpack": "^4.28.0",
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
@@ -38,7 +36,7 @@
     "faker": "^4.1.0",
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
-    "webpack": "^4.28.0",
+    "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
   }
 }

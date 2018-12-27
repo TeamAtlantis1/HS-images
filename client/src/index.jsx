@@ -17,8 +17,13 @@ class App extends React.Component {
 
     render () {
         return (
-            <div>Hi</div>
-        );
+            <div>
+            <div>Hi</div>   
+            <Images/>
+            <LeftArrow/>
+            <RightArrow/>
+            </div>
+        )
     }
 };
 
