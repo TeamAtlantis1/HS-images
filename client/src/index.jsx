@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Styles from './components/styles.css'
 // import Grid from 'react-css-grid';
 import axios from 'axios';
 
@@ -26,12 +27,13 @@ class App extends React.Component {
     }
 
     onMouseEnter(clickedImage) {
-        console.log('onHover has run >>>>>>>', clickedImage);
+        console.log('onHover has run on >>>>>>>', clickedImage);
 
         if (clickedImage === 'a') {
             $(`.${clickedImage}`).hover(() => { // on over
                 $(`.b, .c, .d, .e`).animate({
-                    opacity: 0.25
+                    opacity: 0.25,
+                    transform: scale(1.5)
                 })
             },
             () => { // on out
@@ -44,9 +46,7 @@ class App extends React.Component {
 
         if (clickedImage === 'b') {
             $(`.${clickedImage}`).hover(() => { // on over
-                $(`.a, .c, .d, .e`).animate({
-                    opacity: 0.25
-                })
+                $(`.a, .c, .d, .e`).addClass('img.zoom')
             },
             () => { // on out
                 $(`.a, .c, .d, .e`).animate({
