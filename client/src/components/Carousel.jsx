@@ -15,18 +15,27 @@ export default class Carousel extends React.Component {
         "https://a0.muscache.com/im/pictures/27985267/512999cf_original.jpg?aki_policy=x_large",
         "https://a0.muscache.com/im/pictures/89281220/ed6e8824_original.jpg?aki_policy=x_large"
       ],
+      imgCaptions: ["Sample Caption 1", "Sample Caption 2", "Sample Caption 3", "Sample Caption 4", "Sample Caption 5"],
       showPhotoList: false
     };
 
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
     this.togglePhotoList = this.togglePhotoList.bind(this);
+    this.updateCurrentImage = this.updateCurrentImage.bind(this);
   }
 
   componentDidMount(props) {
     // console.log("Im the clicked image >>>>>>>>", this.props.clickedImage);
     this.setState({
       currentImageIndex: this.props.clickedImage
+    });
+  }
+
+  updateCurrentImage(newCurrentImageIndex) {
+    console.log("Whats the new current index? >>>>>>>", newCurrentImageIndex);
+    this.setState({
+      currentImageIndex: newCurrentImageIndex
     });
   }
 
@@ -55,28 +64,30 @@ export default class Carousel extends React.Component {
   }
 
   togglePhotoList() {
-      this.setState({
-        showPhotoList: !this.state.showPhotoList
-      })
+    this.setState({
+      showPhotoList: !this.state.showPhotoList
+    });
   }
 
   render() {
-
     return (
       <div className="carousel">
-        <Arrow
-          direction="left"
-          clickFunction={this.previousSlide}
-          glyph="&#9664;"
+
+        <ImageSlide
+          previousSlide={this.previousSlide}
+          nextSlide={this.nextSlide}
+          url={this.state.imgUrls[this.state.currentImageIndex]}
         />
-        <ImageSlide url={this.state.imgUrls[this.state.currentImageIndex]} />
-        <Arrow
-          direction="right"
-          clickFunction={this.nextSlide}
-          glyph="&#9654;"
-        />
-        <button onClick={this.togglePhotoList} className="show-button">{this.state.showPhotoList ? 'Hide photo list' : 'Show photo list'}</button>
-        {this.state.showPhotoList ? <ImageList imgUrls={this.state.imgUrls}/> : null}
+        <div className="caption">{this.state.imgCaptions[this.state.currentImageIndex]}</div>
+        <button onClick={this.togglePhotoList} className="show-button">
+          {this.state.showPhotoList ? "Hide photo list" : "Show photo list"}
+        </button>
+        {this.state.showPhotoList ? (
+          <ImageList
+            updateCurrentImage={this.updateCurrentImage}
+            imgUrls={this.state.imgUrls}
+          />
+        ) : null}
       </div>
     );
   }

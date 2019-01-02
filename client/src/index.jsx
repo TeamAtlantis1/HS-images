@@ -16,12 +16,9 @@ class App extends React.Component {
       clicked: false,
       clickedImage: ''
     };
-    // Bind methods here
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  // Write methods here
-  // Retrieve photos?
 
   componentDidMount() {
     // Axios request to get all images by listing ID #
@@ -194,7 +191,9 @@ class App extends React.Component {
     }
 
   if (this.state.clicked === true) {
-    return <Carousel clickedImage = {this.state.clickedImage}></Carousel>
+    return (
+    <Carousel clickedImage = {this.state.clickedImage}></Carousel> 
+    );
   };
   }
 }

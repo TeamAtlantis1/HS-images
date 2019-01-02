@@ -9,10 +9,10 @@ export default class ImageList extends React.Component {
   render() {
     return (
       <ul className="image-ul">
-        {this.props.imgUrls.map(url => {
+        {this.props.imgUrls.map((url, index) => {
           return (
             <li className="image-li">
-              <img className="image-li-images" src={url} />
+              <img onClick={(e) => this.props.updateCurrentImage(index)} id={index} className="image-li-images" src={url} />
             </li>
           );
         })}
