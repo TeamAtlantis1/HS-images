@@ -24,7 +24,7 @@ export default class Carousel extends React.Component {
   }
 
   componentDidMount(props) {
-    // console.log("IM THE CLICKED IMAGE >>>>>>>>", this.props.clickedImage);
+    // console.log("Im the clicked image >>>>>>>>", this.props.clickedImage);
     this.setState({
       currentImageIndex: this.props.clickedImage
     });

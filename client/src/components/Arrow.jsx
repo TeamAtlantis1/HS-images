@@ -8,8 +8,6 @@ const Arrow = ({ direction, clickFunction, glyph }) => {
     var icon = "angle-right";
   }
 
-
-
   return (
     <div className={`arrow-${direction}`} onClick={clickFunction}>
       {/* {glyph} */}
