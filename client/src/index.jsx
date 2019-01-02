@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import $ from "jquery";
 import Carousel from "./components/Carousel.jsx";
 import axios from "axios";
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+import {faCoffee, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
+library.add(fab, faCoffee, faAngleLeft, faAngleRight);
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -123,7 +127,8 @@ class App extends React.Component {
     if (this.state.clicked === false) {
       return (
         <main>
-          <div className="wrapper">
+          <div className="wrapper white">
+            {/* <div className="a" style={{overflow:'hidden'}}> */}
             <img
               onMouseEnter={() => {
                 this.onMouseEnter("a");
@@ -134,6 +139,9 @@ class App extends React.Component {
               id="0"
               src="https://a0.muscache.com/im/pictures/8a542c1f-b897-4127-8426-6c8e1a4903b7.jpg?aki_policy=x_large"
             />
+            {/* </div> */}
+
+            {/* <div className="b" style={{overflow:'hidden'}}> */}
             <img
               onMouseEnter={() => {
                 this.onMouseEnter("b");
@@ -143,6 +151,9 @@ class App extends React.Component {
               id="1"
               src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
             />
+            {/* </div> */}
+            
+            {/* <div className="c" style={{overflow:'hidden'}}> */}
             <img
               onMouseEnter={() => {
                 this.onMouseEnter("c");
@@ -152,6 +163,9 @@ class App extends React.Component {
               id="2"
               src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
             />
+            {/* </div> */}
+            
+            {/* <div className="d" style={{overflow:'hidden'}}> */}
             <img
               onMouseEnter={() => {
                 this.onMouseEnter("d");
@@ -161,6 +175,9 @@ class App extends React.Component {
               id="3"
               src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
             />
+            {/* </div> */}
+
+            {/* <div className="e" style={{overflow:'hidden'}}>  */}
             <img
               onMouseEnter={() => {
                 this.onMouseEnter("e");
@@ -168,8 +185,9 @@ class App extends React.Component {
               onClick ={this.handleClick}
               className="e"
               id="4"
-              src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
-            />
+              src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"/>
+            {/* </div>  */}
+
           </div>
         </main>
       );
@@ -177,9 +195,7 @@ class App extends React.Component {
 
   if (this.state.clicked === true) {
     return <Carousel clickedImage = {this.state.clickedImage}></Carousel>
-  }
-
-;
+  };
   }
 }
 

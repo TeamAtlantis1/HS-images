@@ -8,7 +8,7 @@ const ImageSlide = ({ url }) => {
     };
   
     return (
-      <img src={url}/>
+      <img className="current-pic" src={url}/>
     );
   }
   
