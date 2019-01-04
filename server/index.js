@@ -6,7 +6,9 @@ var dbfunctions = require('../db/dbfunctions.js')
 const bodyParser = require('body-parser');
 
 const app = express();
+// app.use('/:id', express.static(__dirname + '/../client/dist'));
 app.use(express.static(__dirname + '/../client/dist'));
+console.log(__dirname + '/../client/dist');
 app.use(bodyParser.json());
 
 
@@ -34,7 +36,7 @@ app.get('/images', function (req, res) {
 })
 
 // Get images by Listing ID #
-app.get('/imagesByID/:listingID', function (req, res) {
+app.get('/:listingID', function (req, res) {
     let listingID = req.params.listingID;
     // console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
 
