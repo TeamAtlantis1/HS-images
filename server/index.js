@@ -9,6 +9,7 @@ const app = express();
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 
+
 let port = 5000;
 app.listen(port, function () {
     console.log(`listening on Port ${port}...`);
