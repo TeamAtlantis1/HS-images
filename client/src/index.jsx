@@ -154,7 +154,7 @@ class App extends React.Component {
               clickedImage={this.state.clickedImage}
               className="a"
               id="0"
-              src={`http://localhost:5000/carouselpics/${
+              src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
                 this.state.pictures[0]
               }`}
             />
@@ -166,7 +166,7 @@ class App extends React.Component {
               onClick={this.handleClick}
               className="b"
               id="1"
-              src={`http://localhost:5000/carouselpics/${
+              src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
                 this.state.pictures[1]
               }`}
             />
@@ -178,7 +178,7 @@ class App extends React.Component {
               onClick={this.handleClick}
               className="c"
               id="2"
-              src={`http://localhost:5000/carouselpics/${
+              src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
                 this.state.pictures[2]
               }`}
             />
@@ -190,7 +190,7 @@ class App extends React.Component {
               onClick={this.handleClick}
               className="d"
               id="3"
-              src={`http://localhost:5000/carouselpics/${
+              src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
                 this.state.pictures[3]
               }`}
             />
@@ -202,7 +202,7 @@ class App extends React.Component {
               onClick={this.handleClick}
               className="e"
               id="4"
-              src={`http://localhost:5000/carouselpics/${
+              src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
                 this.state.pictures[4]
               }`}
             />
