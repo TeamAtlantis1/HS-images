@@ -1,6 +1,5 @@
 import React from "react";
 import ImageSlide from "./ImageSlide.jsx";
-import Arrow from "./Arrow.jsx";
 import ImageList from "./ImageList.jsx";
 
 export default class Carousel extends React.Component {

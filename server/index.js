@@ -37,7 +37,7 @@ app.get('/imagesByID/:listingID', function (req, res) {
         res.send(docs);
     })
     .catch((err) => {
-        console.log(`Error getting images by listing ${listingID}:`, err);
+        // console.log(`Error getting images by listing ${listingID}:`, err);
         res.sendStatus(500);
     })
 });

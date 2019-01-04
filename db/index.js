@@ -17,7 +17,7 @@ var listingSchema = new mongoose.Schema({
 
 var imageSchema = new mongoose.Schema({
   id: Number,
-  image_url: [String],
+  image_url: String,
   image_caption: String
 });
 

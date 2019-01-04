@@ -3,9 +3,13 @@ import ReactDOM from "react-dom";
 import $ from "jquery";
 import Carousel from "./components/Carousel.jsx";
 import axios from "axios";
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {fab} from '@fortawesome/free-brands-svg-icons';
-import {faCoffee, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCoffee,
+  faAngleLeft,
+  faAngleRight
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(fab, faCoffee, faAngleLeft, faAngleRight);
 class App extends React.Component {
@@ -14,23 +18,33 @@ class App extends React.Component {
     this.state = {
       pictures: [],
       clicked: false,
-      clickedImage: ''
+      clickedImage: "",
+      listingID: 1
     };
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    // Axios request to get all images by listing ID #
+    let imagesNeeded = [];
+    axios.get(`/imagesByID/${this.state.listingID}`).then(({ data }) => {
+      data.forEach(image => {
+        imagesNeeded.push(image.image_url.slice(55));
+      });
+      // console.log(imagesNeeded);
+      this.setState({
+        pictures: imagesNeeded
+      });
+    });
   }
 
   handleClick(e) {
-    console.log('What was clicked? >>>>>>>>>>>', e.target.id);
+    // console.log('What was clicked? >>>>>>>>>>>', e.target.id);
     let image = e.target.id;
     this.setState({
       clicked: true,
       clickedImage: image
-    })
+    });
   }
 
   onMouseEnter(hoveredImage) {
@@ -41,13 +55,15 @@ class App extends React.Component {
         () => {
           // on over
           $(`.b, .c, .d, .e`).animate({
-            opacity: 0.25,
+            // opacity: 0.25,
+            transition: 0.3
           });
         },
         () => {
           // on out
           $(`.b, .c, .d, .e`).animate({
-            opacity: 1
+            opacity: 1,
+            transition: 0.3
           });
         }
       );
@@ -57,7 +73,10 @@ class App extends React.Component {
       $(`.${hoveredImage}`).hover(
         () => {
           // on over
-          $(`.a, .c, .d, .e`).addClass("img.zoom");
+          $(`.a, .c, .d, .e`).animate({
+            opatcity: 0.25,
+            transition: 0.3
+          });
         },
         () => {
           // on out
@@ -73,7 +92,8 @@ class App extends React.Component {
         () => {
           // on over
           $(`.a, .b, .d, .e`).animate({
-            opacity: 0.25
+            opacity: 0.25,
+            transition: 0.3
           });
         },
         () => {
@@ -90,7 +110,8 @@ class App extends React.Component {
         () => {
           // on over
           $(`.a, .b, .c, .e`).animate({
-            opacity: 0.25
+            opacity: 0.25,
+            transition: 0.3
           });
         },
         () => {
@@ -124,78 +145,76 @@ class App extends React.Component {
     if (this.state.clicked === false) {
       return (
         <main>
-          <div className="wrapper white">
-            {/* <div className="a" style={{overflow:'hidden'}}> */}
+          <div className="wrapper">
             <img
-              onMouseEnter={() => {
-                this.onMouseEnter("a");
-              }}
-              onClick ={(e) => this.handleClick(e)}
-              clickedImage = {this.state.clickedImage}
+              // onMouseEnter={() => {
+              //   this.onMouseEnter("a");
+              // }}
+              onClick={e => this.handleClick(e)}
+              clickedImage={this.state.clickedImage}
               className="a"
               id="0"
-              src="https://a0.muscache.com/im/pictures/8a542c1f-b897-4127-8426-6c8e1a4903b7.jpg?aki_policy=x_large"
+              src={`http://localhost:5000/carouselpics/${
+                this.state.pictures[0]
+              }`}
             />
-            {/* </div> */}
 
-            {/* <div className="b" style={{overflow:'hidden'}}> */}
             <img
-              onMouseEnter={() => {
-                this.onMouseEnter("b");
-              }}
-              onClick ={this.handleClick}
+              // onMouseEnter={() => {
+              //   this.onMouseEnter("b");
+              // }}
+              onClick={this.handleClick}
               className="b"
               id="1"
-              src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
+              src={`http://localhost:5000/carouselpics/${
+                this.state.pictures[1]
+              }`}
             />
-            {/* </div> */}
-            
-            {/* <div className="c" style={{overflow:'hidden'}}> */}
+
             <img
-              onMouseEnter={() => {
-                this.onMouseEnter("c");
-              }}
-              onClick ={this.handleClick}
+              // onMouseEnter={() => {
+              //   this.onMouseEnter("c");
+              // }}
+              onClick={this.handleClick}
               className="c"
               id="2"
-              src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
+              src={`http://localhost:5000/carouselpics/${
+                this.state.pictures[2]
+              }`}
             />
-            {/* </div> */}
-            
-            {/* <div className="d" style={{overflow:'hidden'}}> */}
+
             <img
-              onMouseEnter={() => {
-                this.onMouseEnter("d");
-              }}
-              onClick ={this.handleClick}
+              // onMouseEnter={() => {
+              //   this.onMouseEnter("d");
+              // }}
+              onClick={this.handleClick}
               className="d"
               id="3"
-              src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"
+              src={`http://localhost:5000/carouselpics/${
+                this.state.pictures[3]
+              }`}
             />
-            {/* </div> */}
 
-            {/* <div className="e" style={{overflow:'hidden'}}>  */}
             <img
-              onMouseEnter={() => {
-                this.onMouseEnter("e");
-              }}
-              onClick ={this.handleClick}
+              // onMouseEnter={() => {
+              //   this.onMouseEnter("e");
+              // }}
+              onClick={this.handleClick}
               className="e"
               id="4"
-              src="https://a0.muscache.com/im/pictures/14d7ab26-5373-4039-9c42-aa0d0874ad6b.jpg?aki_policy=x_large"/>
-            {/* </div>  */}
-
+              src={`http://localhost:5000/carouselpics/${
+                this.state.pictures[4]
+              }`}
+            />
           </div>
         </main>
       );
     }
 
-  if (this.state.clicked === true) {
-    return (
-    <Carousel clickedImage = {this.state.clickedImage}></Carousel> 
-    );
-  };
+    if (this.state.clicked === true) {
+      return <Carousel clickedImage={this.state.clickedImage} />;
+    }
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("image-carousel"));
