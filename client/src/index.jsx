@@ -217,4 +217,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("image-carousel"));
+// ReactDOM.render(<App />, document.getElementById("image-carousel"));
+window.ImageCarousel = App;
