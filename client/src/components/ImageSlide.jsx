@@ -22,7 +22,7 @@ export default class ImageSlide extends React.Component {
           clickFunction={() => this.props.previousSlide()}
           glyph="&#9664;"
         />
-        <img className="current-pic" src={this.props.url} />
+        <img className="current-pic" src={`http://localhost:5000/carouselpics/${this.props.url}`}/>
         <Arrow
           direction="right"
           clickFunction={() => this.props.nextSlide()}

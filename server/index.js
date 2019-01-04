@@ -29,11 +29,11 @@ app.get('/images', function (req, res) {
 // Get images by Listing ID #
 app.get('/imagesByID/:listingID', function (req, res) {
     let listingID = req.params.listingID;
-    console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
+    // console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
 
     dbfunctions.findImagebyID(listingID)
     .then((docs) => {
-        console.log('What is docs after get req by ID >>>>>>', docs);
+        // console.log('What is docs after get req by ID >>>>>>', docs);
         res.send(docs);
     })
     .catch((err) => {

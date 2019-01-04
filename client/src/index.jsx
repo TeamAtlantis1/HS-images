@@ -212,7 +212,7 @@ class App extends React.Component {
     }
 
     if (this.state.clicked === true) {
-      return <Carousel clickedImage={this.state.clickedImage} />;
+      return <Carousel clickedImage={this.state.clickedImage} pictures={this.state.pictures}/>;
     }
   }
 }
