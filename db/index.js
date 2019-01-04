@@ -1,5 +1,8 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/images");
+mongoose.connect(
+  "mongodb://localhost/images",
+  { useNewUrlParser: true }
+);
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection error:"));
@@ -14,18 +17,11 @@ var listingSchema = new mongoose.Schema({
 
 var imageSchema = new mongoose.Schema({
   id: Number,
-  image_url: [String],
+  image_url: String,
   image_caption: String
 });
 
 var Listing = mongoose.model("Listing", listingSchema);
 var Image = mongoose.model("Image", imageSchema);
 
-// var imageSchema = new mongoose.Schema({
-//     id: Number,
-//     image_list: [String],
-//     // imageUrl: String,
-//     // caption: String
-// });
-
-module.exports = {Listing, Image};
+module.exports = { Listing, Image };
