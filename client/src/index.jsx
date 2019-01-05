@@ -42,14 +42,14 @@ class App extends React.Component {
       }, () => {
         this.getPictures(this.state.listingID);
         console.log('this is the listing ID after setting state', this.state.listingID)
-      }, console.log(this.state.pictures) );  
+      }, console.log(this.state.pictures));  
   }
 
   getPictures(listingID) {
     let imagesNeeded = [];
 
     axios.get(`/api/pictures/${listingID}`).then(({ data }) => {
-      console.log('DID I RUN???????????', data);
+      console.log('DID I RUN????????', data);
       data.forEach(image => {
         imagesNeeded.push(image.image_url.slice(55));
       });

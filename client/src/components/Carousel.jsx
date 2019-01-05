@@ -78,6 +78,8 @@ export default class Carousel extends React.Component {
   render() {
     return (
       <div className="carousel">
+        
+        <div className="rectangle">
         <ImageSlide
           previousSlide={this.previousSlide}
           nextSlide={this.nextSlide}
@@ -96,6 +98,9 @@ export default class Carousel extends React.Component {
                   : "Show photo list"}
               </button>
             </div>
+          </div>
+          <div className="footer"></div>
+
           </div>
 
           {this.state.showPhotoList ? (

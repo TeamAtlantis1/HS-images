@@ -27,7 +27,7 @@ app.listen(port, function () {
 app.get('/api/pictures/:listingID', function (req, res) {
 // app.get('http://ec2-3-17-163-197.us-east-2.compute.amazonaws.com/api/items/:listingID', function (req, res) {
     let listingID = req.params.listingID;
-    console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
+    // console.log('What is the requested listing? >>>>>>>>', req.params.listingID);
 
     dbfunctions.findImagebyID(listingID)
     .then((docs) => {
