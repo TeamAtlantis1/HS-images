@@ -26,12 +26,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log('This is the current URL >>>>>>>>>>', window);
+
     let imagesNeeded = [];
-    axios.get(`/imagesByID/${this.state.listingID}`).then(({ data }) => {
+    axios.get(`/${this.state.listingID}`).then(({ data }) => {
       data.forEach(image => {
         imagesNeeded.push(image.image_url.slice(55));
       });
-      // console.log(imagesNeeded);
       this.setState({
         pictures: imagesNeeded
       });
@@ -39,7 +40,6 @@ class App extends React.Component {
   }
 
   handleClick(e) {
-    // console.log('What was clicked? >>>>>>>>>>>', e.target.id);
     let image = e.target.id;
     this.setState({
       clicked: true,
