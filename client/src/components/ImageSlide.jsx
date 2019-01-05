@@ -7,13 +7,6 @@ export default class ImageSlide extends React.Component {
     this.state = {}
   }
 
-// const ImageSlide = ({ url }) => {
-// const styles = {
-//   backgroundImage: `url(${url})`,
-//   backgroundSize: "cover",
-//   backgroundPosition: "center"
-// };
-
   render () {
     return (
       <div className="image-slide">
