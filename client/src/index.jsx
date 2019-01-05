@@ -23,13 +23,33 @@ class App extends React.Component {
     };
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.getPictures = this.getPictures.bind(this);
   }
 
   componentDidMount() {
-    console.log('This is the current URL >>>>>>>>>>', window);
+    console.log(
+      "This is the current URL >>>>>>>>>>",
+      window.location.pathname.substr(1).split("/")[0]
+    );
+  
+    let url_listing = window.location.pathname.substr(1).split("/")[0];
 
+    console.log('this is the url listing', url_listing)
+
+    this.setState(
+      {
+        listingID: url_listing
+      }, () => {
+        this.getPictures(this.state.listingID);
+        console.log('this is the listing ID after setting state', this.state.listingID)
+      } );  
+  }
+
+  getPictures(listingID) {
     let imagesNeeded = [];
-    axios.get(`/${this.state.listingID}`).then(({ data }) => {
+
+    axios.get(`/api/items/${listingID}`).then(({ data }) => {
+      console.log('DID I RUN???????????', data);
       data.forEach(image => {
         imagesNeeded.push(image.image_url.slice(55));
       });
@@ -212,7 +232,12 @@ class App extends React.Component {
     }
 
     if (this.state.clicked === true) {
-      return <Carousel clickedImage={this.state.clickedImage} pictures={this.state.pictures}/>;
+      return (
+        <Carousel
+          clickedImage={this.state.clickedImage}
+          pictures={this.state.pictures}
+        />
+      );
     }
   }
 }

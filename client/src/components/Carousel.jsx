@@ -14,7 +14,13 @@ export default class Carousel extends React.Component {
         "https://a0.muscache.com/im/pictures/27985267/512999cf_original.jpg?aki_policy=x_large",
         "https://a0.muscache.com/im/pictures/89281220/ed6e8824_original.jpg?aki_policy=x_large"
       ],
-      imgCaptions: ["Sample Caption 1", "Sample Caption 2", "Sample Caption 3", "Sample Caption 4", "Sample Caption 5"],
+      imgCaptions: [
+        "Sample Caption 1",
+        "Sample Caption 2",
+        "Sample Caption 3",
+        "Sample Caption 4",
+        "Sample Caption 5"
+      ],
       showPhotoList: false
     };
 
@@ -72,22 +78,33 @@ export default class Carousel extends React.Component {
   render() {
     return (
       <div className="carousel">
-
         <ImageSlide
           previousSlide={this.previousSlide}
           nextSlide={this.nextSlide}
           url={this.state.imgUrls[this.state.currentImageIndex]}
         />
-        <div className="caption">{this.state.imgCaptions[this.state.currentImageIndex]}</div>
-        <button onClick={this.togglePhotoList} className="show-button">
-          {this.state.showPhotoList ? "Hide photo list" : "Show photo list"}
-        </button>
-        {this.state.showPhotoList ? (
-          <ImageList
-            updateCurrentImage={this.updateCurrentImage}
-            imgUrls={this.state.imgUrls}
-          />
-        ) : null}
+
+        <div className="bottom-part">
+          <div className="bar">
+            <div className="caption">
+              {this.state.imgCaptions[this.state.currentImageIndex]}
+            </div>
+            <div className="div-button">
+              <button onClick={this.togglePhotoList} className="show-button">
+                {this.state.showPhotoList
+                  ? "Hide photo list"
+                  : "Show photo list"}
+              </button>
+            </div>
+          </div>
+
+          {this.state.showPhotoList ? (
+            <ImageList
+              updateCurrentImage={this.updateCurrentImage}
+              imgUrls={this.state.imgUrls}
+            />
+          ) : null}
+        </div>
       </div>
     );
   }
