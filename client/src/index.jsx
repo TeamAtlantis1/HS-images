@@ -42,7 +42,7 @@ class App extends React.Component {
       }, () => {
         this.getPictures(this.state.listingID);
         console.log('this is the listing ID after setting state', this.state.listingID)
-      } );  
+      }, console.log(this.state.pictures) );  
   }
 
   getPictures(listingID) {
