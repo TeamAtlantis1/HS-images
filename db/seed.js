@@ -30,7 +30,7 @@ const imageData = [];
 // This fn will create 100 listing objs with an arr of 8-10 image objs
 const createMockData = () => {
     // This loop will create 100 listing objs
-    for (var i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
         let id = i;
 
         // This loop will generate 8-10 images objs for ea listing
@@ -42,7 +42,7 @@ const createMockData = () => {
         }
         listingData.push(listing);
 
-        for (var j = 0; j < randomNum; j++) {
+        for (let j = 0; j < randomNum; j++) {
             let url = sampleStaticData[Math.floor(Math.random() * Math.floor(20))];
             let caption = faker.lorem.sentence();
             let imageObj = {
@@ -57,14 +57,10 @@ const createMockData = () => {
 };
 
 createMockData();
-// console.log('Example of listingData', listingData[99]);
-// console.log('Example of imageData', imageData[99]);
-
 
 // Run this function once to load the mockData into mongoDB.
 const loadListingCollection = () => {
-    for (var i = 0; i < listingData.length; i++) {
-        // console.log(listingData[i].id)
+    for (let i = 0; i < listingData.length; i++) {
         let data = new db.Listing({
             id: listingData[i].id,
             count: listingData[i].count
@@ -80,8 +76,7 @@ const loadListingCollection = () => {
 };
 
 const loadImageCollection = () => {
-    for (var i = 0; i < imageData.length; i++) {
-        // console.log(imageData[0].id)
+    for (let i = 0; i < imageData.length; i++) {
         let data = new db.Image({
             id: imageData[i].listing_id,
             image_url: imageData[i].image_url,

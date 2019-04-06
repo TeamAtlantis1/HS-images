@@ -3,17 +3,13 @@ body {
   padding: 0px;
   /* background-color: #484848; */
   font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 14;
+  font-size: 14;  
   color: white;
 }
 
 img {
   object-fit: cover;
 }
-
-/* .white {
-  background-color: white;
-} */
 
 .carousel {
   display: block;

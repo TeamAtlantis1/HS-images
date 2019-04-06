@@ -1,6 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Make into a explicit fn instead of const
+//function Arrow...
 const Arrow = ({ direction, clickFunction, glyph }) => {
   if (direction === "left") {
     var icon = "angle-left";

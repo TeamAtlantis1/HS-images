@@ -19,7 +19,8 @@ class App extends React.Component {
       pictures: [],
       clicked: false,
       clickedImage: "",
-      listingID: 1
+      listingID: 1,
+      hoveredImage: null,
     };
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -70,6 +71,22 @@ class App extends React.Component {
   onMouseEnter(hoveredImage) {
     // console.log("onHover has run on >>>>>>>", clickedImage);
 
+    //Use switch statement
+    /*
+    function onMouseEnter(hoveredImage) {
+      switch(hoveredImage)
+      case: 'a' {
+        // logic for if a...
+      }
+      case: 'b' {
+        // logic...
+      }
+      default: {
+        return null;
+      }
+
+    }
+    */
     if (hoveredImage === "a") {
       $(`.${hoveredImage}`).hover(
         () => {
@@ -161,12 +178,32 @@ class App extends React.Component {
     }
   }
 
+  renderImages() {
+    const {pictures} = this.state;
+    if(pictures.length === 0) return <div>no photos available</div>
+    return pictures.map((photo, idx)=>(
+      <img
+      onMouseEnter={() => {
+        this.onMouseEnter(idx);
+      }}
+      onClick={e => this.handleClick(e)}
+      clickedImage={this.state.clickedImage}
+      className={idx}
+      // id="0"
+      src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
+        this.state.pictures[idx]
+      }`}
+    />
+    ))
+  }
+
   render() {
     if (this.state.clicked === false) {
       return (
         <main>
           <div className="wrapper">
-            <img
+          {this.renderImages()}
+            {/* <img
               // onMouseEnter={() => {
               //   this.onMouseEnter("a");
               // }}
@@ -225,7 +262,7 @@ class App extends React.Component {
               src={`https://s3.us-east-2.amazonaws.com/hjs-images/${
                 this.state.pictures[4]
               }`}
-            />
+            /> */}
           </div>
         </main>
       );
